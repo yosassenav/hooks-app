@@ -13,9 +13,15 @@ export const useForm = (initialForm = {})=>{
             [name]: value
         });
     }
+
+    const  resetForm=()=>{
+       setFormState(initialForm);
+     };
+
     return {
         ...formState, //allows to  access all the form data of the formState object
         formState,
         onInputChange,
+        resetForm,
     }
 }
