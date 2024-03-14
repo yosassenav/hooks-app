@@ -12,13 +12,6 @@ import { Layout } from './05-useLayoutEffect/Layout';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <HooksApp/> */}
-    {/* <CounterApp/> */}
-    {/* <CounterWithCustomHook/> */}
-    {/* <SimpleForm/> */}
-    {/* <FormWithCustomHook/> */}
-    {/* <MultipeCustomHooks/> */}
-    {/* <FocusScreen/> */}
     <Layout/>
   </React.StrictMode>,
 )
