@@ -14,9 +14,11 @@ import { Padre } from './07-tarea-memo/Padre';
 // import { HooksApp } from './HooksApp'
 // import { CounterApp } from './01-useState/CounterApp';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Padre/>
-  </React.StrictMode>,
-)
+import './08-useReducer/intro-reducer'
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <Padre/>
+//   </React.StrictMode>,
+// )
 
