@@ -42,6 +42,6 @@ export const TodoAdd = ({onNewTodo}) => {
     )
 }
 
-TodoAdd.PropTypes = {
+TodoAdd.propTypes = {
     onNewTodo: PropTypes.func,
 };
