@@ -17,6 +17,10 @@ const initialtodo = [{
 
 export const TodoApp = () =>{
     const [todos, dispatch] = useReducer(todoReducer, initialtodo);
+    
+    const handleNewTodo = (todo) => {
+        console.log('nuevo todo: ', {todo});
+    }
 
     return (
     <>
@@ -28,7 +32,7 @@ export const TodoApp = () =>{
             </div>
             <div className="col-5">
                 <h4>Agrear To Do</h4>
-               <TodoAdd/>
+                <TodoAdd onNewTodo={handleNewTodo}/> 
             </div>
         </div>
         

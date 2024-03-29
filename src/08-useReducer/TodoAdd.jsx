@@ -1,19 +1,36 @@
+import PropTypes from "prop-types";
 import {useForm} from "../hooks/useForm";
-export const TodoAdd = () => {
+
+
+export const TodoAdd = ({onNewTodo}) => {
     
-    const [description, onInputChage, resetForm] = useForm({
+    const {description, onInputChange, resetForm} = useForm({
         description: '',
-    });
+    })
+
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+        if (description.length <= 1) return;
+
+        const newTodo = {
+            id: new Date().getTime(),
+            description,
+            done: false,
+        }
+
+        onNewTodo(newTodo);
+        resetForm();
+    }
 
     return (
-        <form>
+        <form onSubmit={onFormSubmit}>
             <input 
             type='text'
             placeholder="Que hay que hacer?"
             className="form-control mb-2"
             name="description"
             value={description}
-            onChange={onInputChage}
+            onChange={onInputChange}
             />
             <button
             type="submit"
@@ -24,3 +41,7 @@ export const TodoAdd = () => {
         </form>
     )
 }
+
+TodoAdd.PropTypes = {
+    onNewTodo: PropTypes.func,
+};
