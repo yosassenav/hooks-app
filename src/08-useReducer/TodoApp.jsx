@@ -12,6 +12,10 @@ const initialtodo = [
 ]
 
 export const TodoApp = () =>{
+
+    /**This function is to avoid losing the todo data when the browser 
+     * reloads
+    */
 const init = () => {
     return JSON.parse(localStorage.getItem('todos')) || [];
 }
@@ -35,13 +39,30 @@ const init = () => {
         dispatch(action);
     }
 
+    const handleDeleteTodo = (id) => {
+        const action={
+            type:'[TODO] Remove Todo',
+            payload: id
+        }
+        dispatch(action);
+    }
+
+    const handleToggleTodo = (id) => {
+        const action = {
+            type :'[TODO] Toggle Todo',
+            payload: id
+        }
+
+        dispatch(action);
+    }
+
     return (
     <>
         <h1>TodoApp: 10 <small>pendientes: 2</small></h1>
         <hr/>
         <div className="row">
             <div className="col-7">
-                <TodoList todos={todos}/>
+                <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} onToggleTodo={handleToggleTodo}/>
             </div>
             <div className="col-5">
                 <h4>Agrear To Do</h4>
