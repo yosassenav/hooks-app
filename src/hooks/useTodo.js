@@ -55,6 +55,8 @@ const [todos, dispatch] = useReducer(todoReducer, initialtodo, init);
 
     return{
         todos,
+        todosCount: todos.length,
+        pendingTodosCount: todos.filter(todo => !todo.done).length,
         handleNewTodo,
         handleToggleTodo,
         handleDeleteTodo
