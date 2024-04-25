@@ -8,12 +8,12 @@ export const useCounter = (initialValue = 10) => {
         /**el parametro "value" es un evento y los eventos en JS son objetos,
          * por lo que por eso marca error al sumar un valor (counter) con un objeto.
          */
-        setCounter(counter + value);
+        setCounter((current) => current + value);
     }
 
     const decrement = (value = 1) => {
         if (counter === 0) return;
-        setCounter(counter - value);
+        setCounter((current) => current - value);
     }
 
     const reset = () => {
