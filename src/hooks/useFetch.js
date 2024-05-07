@@ -41,6 +41,7 @@ export const useFetch  = (url) => {
 
             await new Promise(resolve=>setTimeout(resolve, 1500)); //simulamos
 
+            //when fethcing the data fails
             if(!response.ok) {
                 setState({
                     data: null,
