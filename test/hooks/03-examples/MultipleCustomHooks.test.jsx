@@ -10,12 +10,12 @@ jest.mock("../../../src/hooks/useCounter");
 
 describe('Pruebas en MultipleCustomHooks', () => {
 
-    const mockUseCounter = jest.fn()
-
-    useCounter.mockReturnValue({
+    const mockUseCounter = {
         counter: 1,
-        increment: mockUseCounter
-    })
+        increment: jest.fn()
+    }
+        
+    useCounter.mockReturnValue(mockUseCounter);
 
     beforeEach(()=>{
         jest.clearAllMocks()
@@ -74,10 +74,11 @@ describe('Pruebas en MultipleCustomHooks', () => {
         expect(screen.getByText('Informacion de Pokemon')).toBeInTheDocument();
 
         const nextButton = screen.getByRole('button', { name: 'Siguiente' });
+
         fireEvent.click(nextButton);
 
-        expect(mockUseCounter).toHaveBeenCalledTimes(1);
+
+        expect(mockUseCounter.increment).toHaveBeenCalledTimes(1);
 
     })
-
 })
