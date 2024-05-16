@@ -1,16 +1,24 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { MultipeCustomHooks } from "../../../src/03-examples/MultipleCustomHooks"
 import { useFetch } from "../../../src/hooks/useFetch"
 import "@testing-library/jest-dom";
+import { useCounter } from "../../../src/hooks/useCounter";
 
 jest.mock("../../../src/hooks/useFetch");
+jest.mock("../../../src/hooks/useCounter");
 
 
 describe('Pruebas en MultipleCustomHooks', () => {
-    useFetch.mockReturnValue({
-         data: null,
-        isLoading: true,
-        hasError: null
+
+    const mockUseCounter = {
+        counter: 1,
+        increment: jest.fn()
+    }
+        
+    useCounter.mockReturnValue(mockUseCounter);
+
+    beforeEach(()=>{
+        jest.clearAllMocks()
     })
 
     test('debe mostrar el componente por defecto', () => {
@@ -50,4 +58,27 @@ describe('Pruebas en MultipleCustomHooks', () => {
     expect(screen.getByText('metapod')).toBeInTheDocument();
     })
 
+    test('debe llamar la funcion de incrementar',()=>{
+         // Mock the useFetch hook return value
+         useFetch.mockReturnValue({
+            data: null,
+            isLoading: true,
+            hasError: null
+        });
+
+       
+
+        render(<MultipeCustomHooks />);
+        
+        expect(screen.getByText('Cargando...')).toBeInTheDocument();
+        expect(screen.getByText('Informacion de Pokemon')).toBeInTheDocument();
+
+        const nextButton = screen.getByRole('button', { name: 'Siguiente' });
+
+        fireEvent.click(nextButton);
+
+
+        expect(mockUseCounter.increment).toHaveBeenCalledTimes(1);
+
+    })
 })
