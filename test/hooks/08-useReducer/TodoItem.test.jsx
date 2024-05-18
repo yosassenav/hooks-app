@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { TodoItem } from "../../../src/08-useReducer/TodoItem";
 
 describe('Puebas en >TodoItem/>',()=>{
@@ -6,7 +6,7 @@ describe('Puebas en >TodoItem/>',()=>{
     const todo = {
         id: 1,
         description: 'Aprender JEST',
-        donde: false
+        done: false
     }
     const onDeleteTodoMock = jest.fn();
     const onToggleTodoMock = jest.fn();
@@ -27,9 +27,22 @@ describe('Puebas en >TodoItem/>',()=>{
     expect(spanElement.className).not.toContain('text-decoration-line-through');
 
     })
-    test('',()=>{
 
+    test('Debe mostrar el Todo completado',()=>{
+
+        todo.done = true;
+
+        render(
+        <TodoItem todo={todo}
+        onDeleteTodo={onDeleteTodoMock}
+        onToggleTodo={onToggleTodoMock}/>
+    );
+
+    const spanElement = screen.getByLabelText('span');
+    expect(spanElement.className).toContain('align-self-center');
+    expect(spanElement.className).toContain('text-decoration-line-through');
     })
+
     test('',()=>{
 
     })
