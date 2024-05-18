@@ -43,7 +43,31 @@ describe('Puebas en >TodoItem/>',()=>{
     expect(spanElement.className).toContain('text-decoration-line-through');
     })
 
-    test('',()=>{
+    test('span debe llamar el ToggleTodo',()=>{
+        render(
+            <TodoItem todo={todo}
+            onDeleteTodo={onDeleteTodoMock}
+            onToggleTodo={onToggleTodoMock}/>
+        );
+    
+        const spanElement = screen.getByLabelText('span');
+        fireEvent.click(spanElement);
+
+        expect(onToggleTodoMock).toHaveBeenCalledWith(todo.id)
+
+    })
+
+    test('span debe llamar el deleteTodo',()=>{
+        render(
+            <TodoItem todo={todo}
+            onDeleteTodo={onDeleteTodoMock}
+            onToggleTodo={onToggleTodoMock}/>
+        );
+    
+        const buttonElement = screen.getByRole('button', {name: 'Borrar'});
+        fireEvent.click(buttonElement);
+
+        expect(onDeleteTodoMock).toHaveBeenCalledWith(todo.id);
 
     })
 
