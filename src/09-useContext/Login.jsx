@@ -9,7 +9,9 @@ export const Login = () => {
     <>
       <h1>Login</h1>
       <hr/>
-      <pre>{JSON.stringify(user, null, 3)}</pre>
+      <pre aria-label="data">
+        {JSON.stringify(user, null, 3)}
+      </pre>
       <button
       className="bn btn-primary"
       onClick={()=>setUser({id:'123', name:'John Doe', email:'johndoe@example.com'})}
