@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { TodoApp } from "../../../src/08-useReducer/TodoApp"
-import { useTodo } from "../../../src/hooks/useTodo";
+import { TodoApp } from "../../src/08-useReducer/TodoApp"
+import { useTodo } from "../../src/hooks/useTodo";
 
 
 jest.mock('../../../src/hooks/useTodo');
@@ -29,8 +29,6 @@ describe('Pruebas en <TodoAp/>',()=>{
         expect( screen.getByText('Tijera') ).toBeTruthy();
 
         expect(screen.getAllByRole('textbox')).toBeTruthy();
-
-
 
     })
 })
